@@ -20,6 +20,7 @@ class _AllEventsScreenState extends State<AllEventsScreen> {
     eventsOfDay0.add(Event(startMinuteOfDay: 23*60,title: "Attaya gitmek"));
   }
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
