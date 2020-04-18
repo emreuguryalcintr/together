@@ -9,8 +9,7 @@ class CustomTextField extends StatefulWidget {
   final suffixIcon;
   final bool readOnly;
   final VoidCallback onTap;
-  final bool enable;
-  CustomTextField({@required this.labelText, @required this.controller,@required this.prefixIcon, this.suffixIcon, this.readOnly, this.onTap, this.enable});
+  CustomTextField({@required this.labelText, @required this.controller,@required this.prefixIcon, this.suffixIcon, this.readOnly, this.onTap});
 
   @override
   _CustomTextFieldState createState() => _CustomTextFieldState();
@@ -32,17 +31,18 @@ class _CustomTextFieldState extends State<CustomTextField> {
           ),
 
           child: TextFormField(
+            enableInteractiveSelection: false,
             onTap: widget.onTap,
-            enabled: widget.enable??true,
             controller: widget.controller,
             readOnly: widget.readOnly??false,
             decoration: InputDecoration(
-              prefixIcon: widget.prefixIcon,
+                prefixIcon: widget.prefixIcon,
               suffixIcon: widget.suffixIcon,
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.all(Radius.circular(10.0)),
               ),
-              labelText: widget.labelText
+              hintText: (widget.readOnly!=null && widget.readOnly)?widget.labelText:"",
+              labelText: (widget.readOnly!=null && widget.readOnly)?"":widget.labelText
             ),
           ),
         ),
