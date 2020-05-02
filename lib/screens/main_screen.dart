@@ -3,9 +3,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:together/auth/auth_service.dart';
-import 'package:together/auth/constants.dart';
-import 'package:together/auth/screens/all_events_screen.dart';
-import 'package:together/auth/screens/profile_screen.dart';
+import 'package:together/constants.dart';
+import 'package:together/screens/all_events_screen.dart';
+import 'package:together/screens/profile/profile_screen.dart';
 
 class MainScreen extends StatefulWidget{
   @override

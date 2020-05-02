@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:together/auth/constants.dart';
-import 'package:together/auth/widgets/submit_button.dart';
-import 'package:together/auth/widgets/text_form_field.dart';
+import 'package:together/constants.dart';
+import 'package:together/widgets/submit_button.dart';
+import 'package:together/widgets/text_form_field.dart';
 
 class RegisterPage extends StatefulWidget {
   @override

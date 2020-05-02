@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:together/auth/constants.dart';
-import 'package:together/auth/screens/login_screen.dart';
+import 'package:together/constants.dart';
+import 'package:together/screens/login_screen.dart';
 
 void main() => runApp(MyApp());
 

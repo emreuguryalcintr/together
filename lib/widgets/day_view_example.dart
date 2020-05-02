@@ -18,13 +18,6 @@ class Event {
 }
 
 List<Event> eventsOfDay0 = <Event>[
-  new Event(startMinuteOfDay: 0, title: "Midnight Party"),
-  new Event(
-      startMinuteOfDay: 6 * 60, title: "Morning Routine"),
-  new Event(startMinuteOfDay: 6 * 60, title: "Eat Breakfast"),
-  new Event(startMinuteOfDay: 7 * 60, duration: 60, title: "Get Dressed"),
-  new Event(
-      startMinuteOfDay: 18 * 60,  title: "Take Dog For A Walk"),
 ];
 
 

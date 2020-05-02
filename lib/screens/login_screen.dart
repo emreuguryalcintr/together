@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_signin_button/button_builder.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:together/auth/auth_service.dart';
-import 'package:together/auth/screens/main_screen.dart';
-import 'package:together/auth/screens/register_page.dart';
-import 'package:together/auth/widgets/submit_button.dart';
-import 'package:together/auth/widgets/text_form_field.dart';
+import 'package:together/screens/main_screen.dart';
+import 'package:together/screens/register_page.dart';
+import 'package:together/widgets/submit_button.dart';
+import 'package:together/widgets/text_form_field.dart';
 
 import '../constants.dart';
 
