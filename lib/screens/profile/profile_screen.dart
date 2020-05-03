@@ -1,10 +1,12 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_boom_menu/flutter_boom_menu.dart';
 import 'package:material_segmented_control/material_segmented_control.dart';
 import 'package:together/auth/auth_service.dart';
 import 'package:together/firebase_helper.dart';
 import 'package:together/screens/profile/add_plan_screen.dart';
+import 'package:together/screens/profile/innovation_kit.dart';
 
 class ProfileScreen extends StatefulWidget {
   @override
@@ -43,7 +45,42 @@ class _ProfileScreenState extends State<ProfileScreen> {
           )
         ],
       ),
-      body: Container(
+      floatingActionButton: BoomMenu(
+        fabAlignment: Alignment.bottomLeft,
+        animatedIcon: AnimatedIcons.menu_close,
+        backgroundColor: Colors.blueAccent,
+        animatedIconTheme: IconThemeData(size: 22.0,color: Colors.white),
+        //child: Icon(Icons.add),
+        onOpen: () => print('OPENING DIAL'),
+        onClose: () => print('DIAL CLOSED'),
+        overlayColor: Colors.black,
+        overlayOpacity: 0.7,
+        children: [
+          MenuItem(
+            child: Icon(Icons.event, color: Colors.white),
+            title: "Plan",
+            titleColor: Colors.white,
+            subtitle: "Günlük planınızı ekleyin",
+            subTitleColor: Colors.white,
+            backgroundColor: Colors.deepOrange,
+            onTap: () {
+              Navigator.push(context, MaterialPageRoute(builder:(context)=>AddPlanScreen()));
+            },
+          ),
+          MenuItem(
+            child: Icon(Icons.notifications, color: Colors.white),
+            title: "Sosyal İnovasyon",
+            titleColor: Colors.white,
+            subtitle: "Sosyal inovasyon kitinizi oluşturun",
+            subTitleColor: Colors.white,
+            backgroundColor: Colors.green,
+            onTap: (){
+              Navigator.push(context, MaterialPageRoute(builder:(context)=>InnovationKit()));
+            }
+          ),
+        ],
+      ),
+        body: Container(
         color: Colors.pink.withOpacity(0.6),
         child: Column(
           children: <Widget>[
@@ -79,18 +116,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       )
                     ],
                   ),
-                  Align(
-                    alignment: Alignment.topRight,
-                    child: IconButton(
-                      onPressed: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=>AddPlanScreen()));
-                      },
-                      icon: Icon(
-                        Icons.add,
-                        color: Colors.white,
-                      ),
-                    ),
-                  )
                 ],
               ),
             ),
