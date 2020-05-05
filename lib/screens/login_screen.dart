@@ -8,7 +8,7 @@ import 'package:together/screens/register_page.dart';
 import 'package:together/widgets/submit_button.dart';
 import 'package:together/widgets/text_form_field.dart';
 
-import '../constants.dart';
+import '../constants/colors_constants.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -36,11 +36,11 @@ class _LoginScreenState extends State<LoginScreen> {
           "Work Together",
           style: TextStyle(color: Colors.white),
         ),
-        backgroundColor: Constants.colorAccent,
+        backgroundColor: ColorConstants.colorAccent,
       ),
       body: Container(
         width: MediaQuery.of(context).size.width,
-        color: Constants.colorMainBackground,
+        color: ColorConstants.colorMainBackground,
         child: Padding(
           padding: const EdgeInsets.only(top: 30),
           child: Column(
@@ -86,7 +86,7 @@ class _LoginScreenState extends State<LoginScreen> {
                      height: 40,
                      width: 220,
                      textColor: Colors.white,
-                     backgroundColor: Constants.colorButtonSubmit,
+                     backgroundColor: ColorConstants.colorButtonSubmit,
                      text: "Giriş",
                      onPressed: () {
                        Navigator.push(context, MaterialPageRoute(builder: (context)=>MainScreen()));

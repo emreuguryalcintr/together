@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:together/auth/auth_service.dart';
-import 'package:together/constants.dart';
+import 'package:together/constants/colors_constants.dart';
 import 'package:together/screens/all_events_screen.dart';
 import 'package:together/screens/profile/profile_screen.dart';
 
@@ -46,7 +46,7 @@ class _MainScreenState extends State<MainScreen>  with TickerProviderStateMixin{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Constants.colorAccent,
+        backgroundColor: ColorConstants.colorAccent,
         bottomNavigationBar: CurvedNavigationBar(
           index: _activeTabIndex,
           height: 50,

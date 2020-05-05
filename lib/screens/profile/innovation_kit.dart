@@ -4,6 +4,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:toast/toast.dart';
 import 'package:together/auth/auth_service.dart';
+import 'package:together/constants/colors_constants.dart';
+import 'package:together/constants/text_style_constants.dart';
 import 'package:together/enums/enums.dart';
 import 'package:together/models/kit_model.dart';
 
@@ -21,12 +23,15 @@ class _InnovationKitState extends State<InnovationKit> {
   String type;
   EnumListType enumType;
   StorageReference storageReference;
+  ScrollController scrollController;
+
 
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
+    scrollController=ScrollController();
 
     enumType=EnumListType.card;
     type=EnumListType.card.toString();
@@ -55,6 +60,7 @@ class _InnovationKitState extends State<InnovationKit> {
               color: Colors.blueAccent,
             ),
             onPressed: () {
+              if(suggestionList.length>0)scrollController.jumpTo(scrollController.position.maxScrollExtent);
               customAlertDialog(context,alertTitle: "Öneri ekle",suggestionList: suggestionList);
             },
           ),
@@ -101,6 +107,7 @@ class _InnovationKitState extends State<InnovationKit> {
                       child: suggestionList.length > 0
                           ? (enumType != EnumListType.grid
                               ? ListView.builder(
+                                  controller: scrollController,
                                   itemCount: suggestionList.length,
                                   itemBuilder: (context, index) {
                                     String suggestion=suggestionList[index];
@@ -151,6 +158,7 @@ class _InnovationKitState extends State<InnovationKit> {
                                   },
                                 )
                               : GridView.count(
+                                controller: scrollController,
                                   childAspectRatio: 2,
                                   padding: EdgeInsets.all(10),
                                   // Create a grid with 2 columns. If you change the scrollDirection to
@@ -250,43 +258,63 @@ class _InnovationKitState extends State<InnovationKit> {
 
     TextEditingController controller=TextEditingController();
     AlertDialog alert= AlertDialog(
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+      backgroundColor: Colors.blueAccent,
       content: Row(
         children: <Widget>[
           Expanded(
             flex: 1,
-            child: TextField(
+            child: TextFormField(
+              textCapitalization: TextCapitalization.words,
+              onTap: (){
+                if(suggestionList.length>0)scrollController.jumpTo(scrollController.position.maxScrollExtent);
+              },
+              focusNode: FocusNode(),
               controller: controller,
             ),
           ),
           Visibility(
             visible: suggestionList!=null,
             child: InkWell(
-              child: Icon(Icons.add),
+              child: Icon(Icons.add,color: ColorConstants.colorAlertIcons,),
               onTap: (){
-                if(controller.text!="")list.add(controller.text);
+                if(controller.text!=""){
+                  if(suggestionList.length>0)    scrollController.jumpTo(scrollController.position.maxScrollExtent);
+                  list.add(controller.text);
+               setState(() {
+                 suggestionList.add(controller.text);
+               });
+                }
+
+
                 controller.clear();
               },
             ),
           )
         ],
       ),
-      title: Text(alertTitle),
+      title: Text(alertTitle,style: TextStyleConstants.alertTextStyle,),
       actions: <Widget>[
-        InkWell(child: Icon(Icons.done),onTap: (){
+        InkWell(child: Icon(Icons.done,color: ColorConstants.colorAlertIcons),onTap: (){
           if(suggestionList==null){
            setState(() {
              this.title=controller.text;
            });
             print("title is: $title");
           }else{
-            suggestionList.addAll(list);
+            if(controller.text!=""){
+              suggestionList.add(controller.text);
+            }
+            //suggestionList.addAll(list);
           }
           Navigator.pop(context);
         },),
         SizedBox(width: 5,),
-        InkWell(child: Icon(Icons.clear),
+        InkWell(child: Icon(Icons.clear,color: ColorConstants.colorAlertIcons),
         onTap: (){
+
           Navigator.pop(context);
+
         },),
       ],
     );
@@ -312,6 +340,14 @@ void saveKit(BuildContext context,
         {"userKit": FieldValue.arrayUnion(kitModel.toJson())},
         merge: true);
   } else {
-    Toast.show("gerekli alanları doldurunuz", context, gravity: Toast.CENTER);
+    Toast.show(kitWarningMessage(suggestionList, title), context, gravity: Toast.CENTER);
   }
+}
+
+String kitWarningMessage(List<String> list,String title){
+
+  if(list==null || list.length==0) return "Listeniz boş";
+  else if(title==null || title.isEmpty) return "Başlık giriniz";
+  else if((list==null || list.length==0) && title==null || title.isEmpty )return "Başlık eksik ve listeniz boş";
+  else return "";
 }

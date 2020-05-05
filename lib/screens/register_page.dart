@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:together/constants.dart';
+import 'package:together/constants/colors_constants.dart';
 import 'package:together/widgets/submit_button.dart';
 import 'package:together/widgets/text_form_field.dart';
 
@@ -15,14 +15,14 @@ class _RegisterPageState extends State<RegisterPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Constants.colorAccent,
+        backgroundColor: ColorConstants.colorAccent,
         leading: Icon(Icons.arrow_back),
         centerTitle: true,
         title: Text("Kaydol"),
       ),
       body: Container(
         width: MediaQuery.of(context).size.width,
-        color: Constants.colorMainBackground,
+        color: ColorConstants.colorMainBackground,
         padding: EdgeInsets.all(30),
         child: Column(
           children: <Widget>[
@@ -69,7 +69,7 @@ class _RegisterPageState extends State<RegisterPage> {
               height: 40,
               width: 220,
               textColor: Colors.white,
-              backgroundColor: Constants.colorButtonSubmit,
+              backgroundColor: ColorConstants.colorButtonSubmit,
               text: "Kayıt Ol",
               onPressed: () {},
             ),

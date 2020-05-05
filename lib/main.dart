@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:together/constants.dart';
+import 'package:together/constants/colors_constants.dart';
 import 'package:together/screens/login_screen.dart';
 
 void main() => runApp(MyApp());
@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        accentColor: Constants.colorAccent
+        accentColor: ColorConstants.colorAccent
       ),
       home: LoginScreen(),
     );
